@@ -3,9 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>301datosPersonales</title>
 </head>
 <body>
+
+    <!-- Creamos el formulario -->
+     <form action = "301datosPersonales.php" method="POST">
+
+        Nombre: <input type="text" name="nombre"><br><br> <!-- Campo para el nombre -->
+        Primer apellido: <input type="text" name="primer_apellido"><br><br> <!-- Campo para el primer apellido -->
+        Segundo apellido: <input type="text" name="segundo_apellido"><br><br> <!-- Campo para el segundo apellido -->
+        DNI: <input type="text" name="dni"><br><br> <!-- Campo para el DNI -->
+        Email: <input type="email" name="email"><br><br> <!-- Campo para el email -->
+        Fecha de nacimiento: <input type="date" name="fecha_nacimiento"><br><br> <!-- Campo para la fecha de nacimiento -->
+        Teléfono: <input type="tel" name="telefono"><br><br> <!-- Campo para el teléfono -->
+
+        <!-- Campo para el sexo -->
+        Sexo: <br>
+        <input type="radio" name="sexo" value="masculino">Masculino<br>
+        <input type="radio" name="sexo" value="femenino">Femenino<br><br>
+
+        <!-- Campo para los estudios -->
+        Estudios: <br>
+        <select name="estudios">
+            <option value="eso">ESO</option>
+            <option value="grado_medio">FP Grado Medio</option>
+            <option value="bachillerato">Bachillerato</option>
+            <option value="grado_superior">Grado Superior</option>
+            <option value="universitario">Título Universitario</option>
+            <option value="otros">Otro/s</option>
+        </select><br><br>
+
+        <!-- Campo para los idiomas -->
+        Idiomas: <br>
+        <input type="checkbox" name="idiomas" value="espanol" checked="checked">Español<br>
+        <input type="checkbox" name="idiomas" value="ingles">Inglés<br>
+        <input type="checkbox" name="idiomas" value="italiano">Italiano<br>
+        <input type="checkbox" name="idiomas" value="frances">Francés<br>
+        <input type="checkbox" name="idiomas" value="aleman">Alemán<br><br>
+
+
+        Foto: <input type="file" name="foto"><br><br> <!-- Campo para la foto -->
+        Currículum: <input type="file" name="curriculum"><br><br> <!-- Campo para el curriculum -->
+
+        <input type="submit" value="Enviar"> <!-- Botón para enviar los datos -->
+
+     </form>
     
 </body>
 </html>
