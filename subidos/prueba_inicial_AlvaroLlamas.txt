@@ -1,0 +1,178 @@
+Álvaro Llamas Huerta
+
+Inicio/Fin para delimitar los bloques de programa
+Utiliza leer, escribir
+Usa variables delante de las mismas para declararlas
+Si "Condicion" entonces
+...
+Sino
+...
+Fin si
+Repetir
+...
+Hasta que "Condicion"
+Para "Variable" Desde ... hasta ... hacer
+...
+Fin Para
+
+1º Determine si un numero es igual a 6
+
+Inicio
+
+Leer num
+Si num es igual 6
+Escribir ("El número es igual a 6")
+Sino
+Escribir ("El número es distinto de 6")
+
+Fin
+
+2º Calcule el doble de un numero
+
+Inicio
+
+Leer num
+Escribir ("El doble de num es: " + num * 2);
+
+Fin
+
+3º Muestre los números del 5 al 1
+
+Inicio
+
+Leer num
+Escribir ("Te muestro los números del 5 al 1");
+Hasta que num = 5
+Escribir (num);
+num++;
+
+Fin
+
+4º Determine si un numero es positivo
+
+Inicio
+
+Leer num
+Si num >= 0
+Escribir ("El numero: " + num + " es positivo");
+Sino
+Escribir ("El número: " + num + " es negativo");
+
+Fin
+
+5º Calcule el area de un cuadrado y el volumen de un cubo dado su lado
+
+Inicio
+
+Leer lado
+Leer altura
+Leer area = lado * lado
+Leer volumen = lado * lado * lado
+Escribir ("El area de un cuadrado es: " + area + " y el volumen es: " + volumen);
+
+Fin
+
+6º Muestre los números pares del 1 al 10
+
+Inicio
+
+Leer num
+Hasta que num = 10
+Si num % 2 = 0
+Escribir (num);
+Sino
+Fin Para
+
+Fin
+
+7º Determine si un numero es multiplo de 3 o no
+
+Inicio
+
+Leer num
+Si num % 3 = 0
+Escribir ("El número " + num + " es múltiplo de 3");
+Sino
+Fin Para
+
+Fin
+
+8º Calcule el area de un triangulo rectangulo dado sus catetos
+
+Inicio
+
+Leer cateto1
+Leer cateto2
+Leer area = (cateto1 * cateto2) / 2
+Escribir ("El área de un triangulo rectangulo es: " + area);
+
+Fin
+
+9º Determine si un numero es positivo, negativo o 0
+
+Inicio
+
+Leer num
+Si num >= 0
+Escribir ("El numero es positivo");
+Si num < 0
+Escribir ("El numero es negativo");
+Sino
+Escribir ("El numero es 0");
+
+Fin
+
+10º Calcule el promedio de dos números
+
+Inicio
+
+Leer num1
+Leer num2
+Escribir ("La media de ambos numeros es: " + (num1 + num2) /2);
+
+Fin
+
+11º Calcule la suma de los números pares del 1 al N, donde N es un numero ingresado por el usuario
+
+Inicio
+
+Leer num
+Escribir ("Introduce el numero N");
+Leer N
+Desde 1 hasta N
+Si num % 2 = 0
+Escribir ("El numero: " + num + " es par);
+Sino
+Escribir ("El numero: " + num + " no es par);
+
+Fin
+
+12º Determine si un numero es un numero perfecto. Un numero perfecto es aquel cuya suma de divisores propios (distinto del propio) es igual al numero
+
+13º Calcule el factorial de un numero (Ej. 5! = 5*4*3*2*1)
+
+14º Dado la base y el exponente, calcule la potencia
+
+Inicio
+
+Leer base
+Leer exponente
+Escribir ("La potencia es igual a : " base.Math.pow(2,2));
+
+Fin
+
+15º Calcule la media de varios números positivos introducidos por teclado mientras sean distintos de 0
+
+Inicio
+
+Pedir num1
+Pedir num2
+Pedir num3
+Leer media = (num1 + num2 + num3) / 3
+
+Si num1 == 0 o num2 == 0 o num3 == 0
+Escribir("Introduzca otro número, el 0 no sirve");
+Sino
+Escribir("La media total es: " + media);
+
+Fin
