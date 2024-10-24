@@ -20,29 +20,30 @@
 
         <!-- Campo para el sexo -->
         Sexo: <br>
-        <input type="radio" name="sexo" value="masculino">Masculino<br>
-        <input type="radio" name="sexo" value="femenino">Femenino<br><br>
+        <input type="radio" name="sexo" value="Masculino">Masculino<br>
+        <input type="radio" name="sexo" value="Femenino">Femenino<br><br>
 
         <!-- Campo para los estudios -->
         Estudios: <br>
         <select name="estudios">
-            <option value="eso">ESO</option>
-            <option value="grado_medio">FP Grado Medio</option>
-            <option value="bachillerato">Bachillerato</option>
-            <option value="grado_superior">Grado Superior</option>
-            <option value="universitario">Título Universitario</option>
-            <option value="otros">Otro/s</option>
+            <option value="ESO">ESO</option>
+            <option value="Grado Medio">FP Grado Medio</option>
+            <option value="Bachillerato">Bachillerato</option>
+            <option value="Grado Superior">Grado Superior</option>
+            <option value="Universitario">Título Universitario</option>
+            <option value="Otros">Otro/s</option>
         </select><br><br>
 
         <!-- Campo para los idiomas -->
         Idiomas: <br>
-        <input type="checkbox" name="idiomas" value="espanol" checked="checked">Español<br>
-        <input type="checkbox" name="idiomas" value="ingles">Inglés<br>
-        <input type="checkbox" name="idiomas" value="italiano">Italiano<br>
-        <input type="checkbox" name="idiomas" value="frances">Francés<br>
-        <input type="checkbox" name="idiomas" value="aleman">Alemán<br><br>
+        <input type="checkbox" name="idiomas" value="Español" checked="checked">Español<br>
+        <input type="checkbox" name="idiomas" value="Inglés">Inglés<br>
+        <input type="checkbox" name="idiomas" value="Italiano">Italiano<br>
+        <input type="checkbox" name="idiomas" value="Francés">Francés<br>
+        <input type="checkbox" name="idiomas" value="Alemán">Alemán<br><br>
 
 
+        <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $max_file_size; ?>"> <!-- Campo oculto que guarda la información del tamaño máximo del fichero -->
         Foto: <input type="file" name="foto"><br><br> <!-- Campo para la foto -->
         Currículum: <input type="file" name="curriculum"><br><br> <!-- Campo para el curriculum -->
 
