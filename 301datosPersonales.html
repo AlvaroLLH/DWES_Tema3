@@ -8,7 +8,7 @@
 <body>
 
     <!-- Creamos el formulario -->
-     <form action = "301datosPersonales.php" method="POST">
+     <form action = "301datosPersonales.php" method="POST" enctype="multipart/form-data">
 
         Nombre: <input type="text" name="nombre"><br><br> <!-- Campo para el nombre -->
         Primer apellido: <input type="text" name="primer_apellido"><br><br> <!-- Campo para el primer apellido -->
@@ -25,25 +25,24 @@
 
         <!-- Campo para los estudios -->
         Estudios: <br>
-        <select name="estudios">
-            <option value="ESO">ESO</option>
-            <option value="Grado Medio">FP Grado Medio</option>
-            <option value="Bachillerato">Bachillerato</option>
-            <option value="Grado Superior">Grado Superior</option>
-            <option value="Universitario">Título Universitario</option>
-            <option value="Otros">Otro/s</option>
-        </select><br><br>
+        <input type="checkbox" name="estudios[]" value="ESO">ESO<br>
+        <input type="checkbox" name="estudios[]" value="FP GM">FP Grado Medio<br>
+        <input type="checkbox" name="estudios[]" value="Bachilerato">Bachillerato<br>
+        <input type="checkbox" name="estudios[]" value="FP GS">FP Grado Superior<br>
+        <input type="checkbox" name="estudios[]" value="Universitario">Título Universitario<br>
+        <input type="checkbox" name="estudios[]" value="Otros">Otros<br><br>
 
         <!-- Campo para los idiomas -->
         Idiomas: <br>
-        <input type="checkbox" name="idiomas" value="Español" checked="checked">Español<br>
-        <input type="checkbox" name="idiomas" value="Inglés">Inglés<br>
-        <input type="checkbox" name="idiomas" value="Italiano">Italiano<br>
-        <input type="checkbox" name="idiomas" value="Francés">Francés<br>
-        <input type="checkbox" name="idiomas" value="Alemán">Alemán<br><br>
+        <input type="checkbox" name="idiomas[]" value="Español" checked="checked">Español<br>
+        <input type="checkbox" name="idiomas[]" value="Inglés">Inglés<br>
+        <input type="checkbox" name="idiomas[]" value="Italiano">Italiano<br>
+        <input type="checkbox" name="idiomas[]" value="Francés">Francés<br>
+        <input type="checkbox" name="idiomas[]" value="Alemán">Alemán<br><br>
 
+        <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $max_file_size; ?>"> <!-- Campo oculto
+        que guarda la información del tamaño máximo del fichero -->
 
-        <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $max_file_size; ?>"> <!-- Campo oculto que guarda la información del tamaño máximo del fichero -->
         Foto: <input type="file" name="foto"><br><br> <!-- Campo para la foto -->
         Currículum: <input type="file" name="curriculum"><br><br> <!-- Campo para el curriculum -->
 

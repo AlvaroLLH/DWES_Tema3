@@ -15,8 +15,23 @@
     recogemos los datos y generamos la tabla con datos, foto y currículum en el segundo archivo
     */
 
+    // Declaración de variables
+    $nombre = $_POST["nombre"]; // Guardamos el nombre
+    $primer_apellido = $_POST["primer_apellido"]; // Guardamos el primer apellido
+    $segundo_apellido = $_POST["segundo_apellido"]; // Guardamos el segundo apellido
+    $dni = $_POST["dni"]; // Guardamos el DNI
+    $email = $_POST["email"]; // Guardamos el email
+    $fecha_nacimiento = $_POST["fecha_nacimiento"]; // Guardamos la fecha de nacimiento
+    $telefono = $_POST["telefono"]; // Guardamos el teléfono
+    $sexo = $_POST["sexo"]; // Guardamos el sexo
+    $estudios = [$_POST["estudios"]]; // Guardamos los estudios
+    $idiomas = [$_POST["idiomas"]]; // Guardamos los idiomas
+    $no_idiomas = empty($idiomas); // Guarda true o false dependiendo de si el array está o no vacío
+    $foto = $_POST["foto"]; // Guardamos la foto
+    $curriculum = $_POST["curriculum"]; // Guardamos el curriculum
+
     // Mostramos el nombre con los dos apellidos al principio
-    echo "<h2>" . $_POST["nombre"] . " " . $_POST["primer_apellido"] . " " . $_POST["segundo_apellido"] . "<br></h2>";
+    echo "<h2>" . $nombre . " " . $primer_apellido . " " . $segundo_apellido . "<br></h2>";
 
     // Establecemos el contenedor principal para organizar el contenido en dos columnas
     echo '<div style="display: flex;">';
@@ -28,58 +43,67 @@
         // Mostramos el DNI
         echo "<tr>";
             echo "<td><strong>DNI</strong></td>";
-            echo "<td>" . $_POST["dni"] . "</td>";
+            echo "<td>" . $dni . "</td>";
         echo "</tr>";
 
         // Mostramos el email
         echo "<tr>";
             echo "<td><strong>Email</strong></td>";
-            echo "<td>" . $_POST["email"] . "</td>";
+            echo "<td>" . $email . "</td>";
         echo "</tr>";
 
         // Mostramos la fecha de nacimiento
         echo "<tr>";
             echo "<td><strong>Fecha de nacimiento</strong></td>";
-            echo "<td>" . $_POST["fecha_nacimiento"] . "</td>";
+            echo "<td>" . $fecha_nacimiento . "</td>";
         echo "</tr>";
 
         // Mostramos el teléfono
         echo "<tr>";
             echo "<td><strong>Teléfono</strong></td>";
-            echo "<td>" . $_POST["telefono"] . "</td>";
+            echo "<td>" . $telefono . "</td>";
         echo "</tr>";
 
         // Mostramos el sexo
         echo "<tr>";
             echo "<td><strong>Sexo</strong></td>";
-            echo "<td>" . $_POST["sexo"] . "</td>";
+            echo "<td>" . $sexo . "</td>";
         echo "</tr>";
 
-        // Mostramos los estudios
+        // Si se han seleccionado estudios, los mostramos recorriendo su array
         echo "<tr>";
             echo "<td><strong>Estudios</strong></td>";
-            echo "<td>" . $_POST["estudios"] . "</td>";
+            echo "<td>";
+            foreach ($estudios as $valor) {
+                echo $valor . ", ";
+            }
+            echo "</td>";
         echo "</tr>";
 
-        // Mostramos los idiomas
+        // Si no se han seleccionado idiomas, mostramos un mensaje de error o los mostramos recorriendo su array
         echo "<tr>";
             echo "<td><strong>Idiomas</strong></td>";
-            echo "<td>" . $_POST["idiomas"] . "</td>";
+            if(!$no_idiomas){
+                echo "<td><strong>ERROR. No se ha seleccionando ningún idioma </strong></td>";
+            } else {
+                foreach ($idiomas as $valor) {
+                    echo $valor . ", ";
+            }
+            }
         echo "</tr>";
 
+    // Cerramos la tabla
     echo '</table>';
     echo '</div>';
 
     // Colocamos la foto a la derecha de los datos personales
     echo '<div style="width: 30%; text-align: center;">';
-        echo '<img src="datosPersonales/' . $_POST["foto"] . 'alt="Foto de perfil" style="max-width: 100%; height: auto;"><br>';
+        echo '<img src="' . $foto . 'style="max-width: 100%; height: auto;"><br>';
     echo '</div>';
 
-    echo '</div>'; // Cierre del contenedor principal
-
-    // Mostramos el currículum debajo de la tabla y la foto
+    // Mostramos el currículum debajo de la tabla
     echo '<div style="margin-top: 20px;">';
-        echo '<a href="datosPersonales/' . $_POST["curriculum"] . 'target="_blank">Ver Currículum (PDF)</a>';
+        echo '<a href="' . $curriculum . 'target="_blank">Ver Currículum (PDF)</a>';
     echo '</div>';
 
     ?>
