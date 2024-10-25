@@ -16,24 +16,27 @@
     */
 
     // Declaración de variables
-    $persona = [ // Array que guarda los datos de la persona
-        "Nombre" => $_POST["nombre"],
-        "1º_Apellido" => $_POST["primer_apellido"],
-        "2º_Apellido" => $_POST["segundo_apellido"],
+    $persona = [ // Array que guarda el nombre y apellidos de la persona
+        "Nombre" => $_POST["nombre"], // Guardamos el nombre
+        "1º_Apellido" => $_POST["primer_apellido"], // Guardamos el primer apellido
+        "2º_Apellido" => $_POST["segundo_apellido"], // Guardamos el segundo apellido
     ];
     $dni = $_POST["dni"]; // Guardamos el DNI
     $email = $_POST["email"]; // Guardamos el email
     $fecha_nacimiento = $_POST["fecha_nacimiento"]; // Guardamos la fecha de nacimiento
     $telefono = $_POST["telefono"]; // Guardamos el teléfono
     $sexo = $_POST["sexo"]; // Guardamos el sexo
-    $estudios = [$_POST["estudios"]]; // Guardamos los estudios
-    $idiomas = [$_POST["idiomas"]]; // Guardamos los idiomas
-    $no_idiomas = empty($idiomas); // Guarda true o false dependiendo de si el array está o no vacío
+    $estudios = isset($_POST["estudios"]) ? $_POST["estudios"] : []; // Guardamos los estudios
+    $idiomas = isset($_POST["idiomas"]) ? $_POST["idiomas"] : []; // Guardamos los idiomas
     $foto = $_POST["foto"]; // Guardamos la foto
     $curriculum = $_POST["curriculum"]; // Guardamos el curriculum
 
     // Mostramos el nombre con los dos apellidos al principio
-    echo "<h2>" . $nombre . " " . $primer_apellido . " " . $segundo_apellido . "<br></h2>";
+    echo "<h2>";
+    foreach ($persona as $clave => $valor) {
+        echo $valor. " ";
+    }
+    echo "</h2>";
 
     // Establecemos el contenedor principal para organizar el contenido en dos columnas
     echo '<div style="display: flex;">';
@@ -75,23 +78,13 @@
         // Si se han seleccionado estudios, los mostramos recorriendo su array
         echo "<tr>";
             echo "<td><strong>Estudios</strong></td>";
-            echo "<td>";
-            foreach ($estudios as $valor) {
-                echo $valor . ", ";
-            }
-            echo "</td>";
+            echo "<td>" . implode(", ", $estudios) . "</td>";
         echo "</tr>";
 
         // Si no se han seleccionado idiomas, mostramos un mensaje de error o los mostramos recorriendo su array
         echo "<tr>";
             echo "<td><strong>Idiomas</strong></td>";
-            if(!$no_idiomas){
-                echo "<td><strong>ERROR. No se ha seleccionando ningún idioma </strong></td>";
-            } else {
-                foreach ($idiomas as $valor) {
-                    echo $valor . ", ";
-            }
-            }
+            echo "<td>" . implode(", ", $idiomas) . "</td>";
         echo "</tr>";
 
     // Cerramos la tabla
