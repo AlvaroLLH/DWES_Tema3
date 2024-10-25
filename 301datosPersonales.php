@@ -16,9 +16,11 @@
     */
 
     // Declaración de variables
-    $nombre = $_POST["nombre"]; // Guardamos el nombre
-    $primer_apellido = $_POST["primer_apellido"]; // Guardamos el primer apellido
-    $segundo_apellido = $_POST["segundo_apellido"]; // Guardamos el segundo apellido
+    $persona = [ // Array que guarda los datos de la persona
+        "Nombre" => $_POST["nombre"],
+        "1º_Apellido" => $_POST["primer_apellido"],
+        "2º_Apellido" => $_POST["segundo_apellido"],
+    ];
     $dni = $_POST["dni"]; // Guardamos el DNI
     $email = $_POST["email"]; // Guardamos el email
     $fecha_nacimiento = $_POST["fecha_nacimiento"]; // Guardamos la fecha de nacimiento
