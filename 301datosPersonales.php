@@ -26,17 +26,46 @@
     $fecha_nacimiento = $_POST["fecha_nacimiento"]; // Guardamos la fecha de nacimiento
     $telefono = $_POST["telefono"]; // Guardamos el teléfono
     $sexo = $_POST["sexo"]; // Guardamos el sexo
-    $estudios = isset($_POST["estudios"]) ? $_POST["estudios"] : []; // Guardamos los estudios
-    $idiomas = isset($_POST["idiomas"]) ? $_POST["idiomas"] : []; // Guardamos los idiomas
-    $foto = $_POST["foto"]; // Guardamos la foto
-    $curriculum = $_POST["curriculum"]; // Guardamos el curriculum
+    $estudios = isset($_POST["estudios"]) ? $_POST["estudios"] : []; // Guardamos los estudios usando el operador ternario
+    $idiomas = isset($_POST["idiomas"]) ? $_POST["idiomas"] : []; // Guardamos los idiomas usando el operador ternario
+    
+    // Procesamos la foto. Comprueba si se ha enviado una foto y verifica que no hubo errores
+    if(isset($_FILES["foto"]) && $_FILES["foto"]["error"] === UPLOAD_ERR_OK){ // UPLOAD_ERR_OK es una constante que indica que la carga se realizó con éxito
+
+        $foto = 'subidos/' . basename($_FILES["foto"]["name"]); // Guarda en la carpeta 'subidos' la foto con el nombre original
+
+        move_uploaded_file($_FILES["foto"]["tmp_name"], $foto); // Mueve el archivo desde el almacenamiento temporal a la ruta definida previamente
+
+    } else {
+        $foto = null; // Si no se carga la foto o hay un error, se asigna null
+    }
+
+    // Procesamos el currículum. Comprueba que se ha enviado y no ha habido errores
+    if(isset($_FILES["curriculum"]) && $_FILES["curriculum"]["error"] === UPLOAD_ERR_OK){
+
+        $curriculum = 'subidos/' . basename($_FILES["curriculum"]["name"]); // Guarda en la carpeta 'subidos' la foto con el nombre original
+
+        move_uploaded_file($_FILES["curriculum"]["tmp_name"], $curriculum); // Mueve el archivo desde el almacenamiento temporal a la ruta
+
+    } else {
+        $curriculum = null; // Si no se carga o hay un error, asignamos null
+    }
 
     // Mostramos el nombre con los dos apellidos al principio
     echo "<h2>";
-    foreach ($persona as $clave => $valor) {
+    foreach ($persona as $clave => $valor) { // Recorremos el array persona con un foreach
         echo $valor. " ";
     }
     echo "</h2>";
+
+    // Mostramos la foto debajo del nombre
+    echo '<div style ="width: 30%; text-align: left;">';
+    if($foto){
+        echo '<img src="' . $foto . '" style="max-width: 25%; height: auto;"><br><br>';
+
+    } else {
+        echo "No se ha subido ninguna foto";
+    }
 
     // Establecemos el contenedor principal para organizar el contenido en dos columnas
     echo '<div style="display: flex;">';
@@ -91,14 +120,15 @@
     echo '</table>';
     echo '</div>';
 
-    // Colocamos la foto a la derecha de los datos personales
-    echo '<div style="width: 30%; text-align: center;">';
-        echo '<img src="' . $foto . 'style="max-width: 100%; height: auto;"><br>';
-    echo '</div>';
+    // Enlace al currículum
+    echo '<div style="margin-bottom: 20px;">';
+    if($curriculum){
+        echo '<a href="' . $curriculum . '" target="_blank">Ver Currículum (PDF)</a>';
 
-    // Mostramos el currículum debajo de la tabla
-    echo '<div style="margin-top: 20px;">';
-        echo '<a href="' . $curriculum . 'target="_blank">Ver Currículum (PDF)</a>';
-    echo '</div>';
+    } else {
+        echo "No se ha subido ningún currículum";
+    }
+    
+    echo "</div>";
 
     ?>
