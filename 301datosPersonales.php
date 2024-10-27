@@ -43,9 +43,23 @@
     // Procesamos el currículum. Comprueba que se ha enviado y no ha habido errores
     if(isset($_FILES["curriculum"]) && $_FILES["curriculum"]["error"] === UPLOAD_ERR_OK){
 
-        $curriculum = 'subidos/' . basename($_FILES["curriculum"]["name"]); // Guarda en la carpeta 'subidos' la foto con el nombre original
+        // Declaración de variables
+        $curriculumNombre = $_FILES["curriculum"]["name"]; // Guardamos el nombre original
+        $curriculumTemp = $_FILES["curriculum"]["tmp_name"]; // Guardamos el nombre temporal
+        $curriculumTipo = $_FILES["curriculum"]["type"]; // Guardamos el tipo de archivo
 
-        move_uploaded_file($_FILES["curriculum"]["tmp_name"], $curriculum); // Mueve el archivo desde el almacenamiento temporal a la ruta
+        // Verificamos si el curriculum es o no un PDF
+        if($curriculumTipo === 'application/pdf'){
+            
+            // Declaración de variables
+            $curriculum = 'subidos/' . basename($curriculumNombre);
+
+            move_uploaded_file($curriculumTemp, $curriculum); // Guardamos el archivo en la carpeta
+
+        } else {
+            $curriculum = null;
+            $curriculumError = "El curriculum debe estar en formato PDF"; // Mensaje de error
+        }
 
     } else {
         $curriculum = null; // Si no se carga o hay un error, asignamos null
@@ -118,17 +132,22 @@
 
     // Cerramos la tabla
     echo '</table>';
-    echo '</div>';
 
     // Enlace al currículum
     echo '<div style="margin-bottom: 20px;">';
     if($curriculum){
-        echo '<a href="' . $curriculum . '" target="_blank">Ver Currículum (PDF)</a>';
+        echo '<br><a href="' . $curriculum . '" target="_blank">Ver Currículum (PDF)</a>';
 
+        // Si no es PDF, mostramos el error
+    } else if (isset($curriculumError)) {
+        echo "<p style='color: red;'>" . $curriculumError . "</p>";
+
+        // Si no se ha subido un curriculum
     } else {
-        echo "No se ha subido ningún currículum";
+        echo "No se ha subido ningún curriculum";
     }
     
+    echo "</div>";
     echo "</div>";
 
     ?>
