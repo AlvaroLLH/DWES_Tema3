@@ -1,0 +1,22 @@
+/* Estilo general para la tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Estilo general para los th y td */
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+/* Estilo para los th*/
+th {
+    background-color: #f4f4f4;
+}
+
+/* Estilo para los tr */
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
