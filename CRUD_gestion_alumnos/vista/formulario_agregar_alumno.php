@@ -5,7 +5,7 @@
 
     <h3>Formulario</h3>;
 
-    <form action="" method="get">;
+    <form action="../controlador/agregar_alumno.php" method="POST">;
 
     <!-- Pedimos el DNI -->
     <p><label for="dni">DNI</label>;

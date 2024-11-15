@@ -1,4 +1,4 @@
-    <?php $titulo = "formulario_agregar_alumno"; 
+    <?php $titulo = "listar_alumno"; 
     include("encabezado.php");
     
     // Incluimos la conexión a la base de datos
