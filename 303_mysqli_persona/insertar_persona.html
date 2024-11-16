@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insertar Persona</title>
+</head>
+<body>
+    
+    <h3>Formulario</h3>
+
+    <form action="insertar_persona.php" method="POST">
+
+        <!-- Pedimos el nombre -->
+        <p><label for="nombre">Nombre</label>
+        <input type="text" name="nombre" id="nombre" required></p>
+
+        <!-- Pedimos los apellidos -->
+        <p><label for="apellidos">Apellidos</label>
+        <input type="text" name="apellidos" id="apellidos" required></p>
+
+        <!-- Pedimos el telefono -->
+        <p><label for="telefono">Teléfono</label>
+        <input type="tel" name="telefono" id="telefono" required></p>
+
+        <!-- Pedimos la edad -->
+        <p><label for="edad">Edad</label>
+        <input type="number" name="edad" id="edad" required></p>
+
+        <!-- Botón de envío -->
+        <p><input type="submit" value="Agregar persona"></p>
+
+    </p>
+    </form>
+
+</body>
+</html>

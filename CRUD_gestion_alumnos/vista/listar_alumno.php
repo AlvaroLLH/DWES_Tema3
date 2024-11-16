@@ -45,7 +45,7 @@
                     echo "<td>" . ($fila['dni']) . "</td>"; // DNI
                     echo "<td>" . ($fila['nombre']) . "</td>"; // Nombre
                     echo "<td>" . ($fila['apellido1']) . "</td>"; // 1º Apellido
-                    echo "<td>" . ($fila['apellido1']) . "</td>"; // 2º Apellido
+                    echo "<td>" . ($fila['apellido2']) . "</td>"; // 2º Apellido
                     echo "<td>" . ($fila['email']) . "</td>"; // Email
                     echo "<td>" . ($fila['telefono']) . "</td>"; // Teléfono
                     echo "<td>" . ($fila['curso']) . "</td>"; // Curso
