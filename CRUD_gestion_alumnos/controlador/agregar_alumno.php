@@ -3,60 +3,49 @@
     // Incluimos la conexión a la base de datos
     include("../config/conexion.php");
 
-    // Array que almacena el error y un mensaje
-    $resultado = [
-        'error' => false,
-        'mensaje' => '',
-    ];
+    // Recogemos los datos enviados por el formulario
+    $dni = $_POST['dni'];
+    $nombre = $_POST['nombre'];
+    $apellido1 = $_POST['apellido1'];
+    $apellido2 = $_POST['apellido2'];
+    $email = $_POST['email'];
+    $telefono = $_POST['telefono'];
+    $curso = $_POST['curso'];
 
-    // Comprobamos si el alumno se ha agregado correctamente
-    if(isset($_POST['submit'])){
+    // Verificar que los datos obligatorios estén presentes
+    if(!isset($dni, $nombre, $apellido1, $apellido2, $email, $telefono, $curso)) {
+        die("Error: Todos los campos son obligatorios");
+    }
 
-        // Verificamos que todos los campos estén presentes
-        if(isset($_POST['dni'], $_POST['nombre'], $_POST['apellido1'], $_POST['apellido2'], $_POST['email'], $_POST['telefono'],
-        $_POST['curso'])){
+    // Creamos la consulta para insertar los datos
+    $sql = "INSERT INTO alumnos (dni, nombre, apellido1, apellido2, email, telefono, curso) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-    // Creamos el array asociativo alumno para almacenar los datos
-    $alumno = array(
-    "dni" => $_POST['dni'], // Guardamos el dni
-    "nombre" => $_POST['nombre'], // Guardamos el nombre
-    "apellido1" => $_POST['apellido1'], // Guardamos el primer apellido
-    "apellido2" => $_POST['apellido2'], // Guardamos el segundo apellido
-    "email" => $_POST['email'], // Guardamos el email
-    "telefono" => $_POST['telefono'], // Guardamos el teléfono
-    "curso" => $_POST['curso'], // Guardamos el curso
-    );
-    
-    // Creamos la consulta SQL para insertar los datos en la tabla
-    $consultaSQL = "INSERT INTO alumnos (DNI, nombre, apellido1, apellido2, email, telefono, curso) VALUES(?, ?, ?, ?, ?, ?, ?)";
+    // Preparamos la consulta
+    $sentencia = $mysqli_conexion -> prepare($sql);
 
-    // Usamos consultas preparadas con mysqli
-    if($stmt = $mysqli_conexion -> prepare($consultaSQL)) {
-        $stmt -> bind_param("sssssss", $alumno['dni'], $alumno['nombre'], $alumno['apellido1'], $alumno['apellido2'],
-        $alumno['email'], $alumno['telefono'], $alumno['curso']);
+    // Verificamos si se pudo preparar la consulta
+    if(!$sentencia){
+        die("Error al preparar la consulta " . $mysqli_conexion -> error);
+    }
 
-        if($stmt -> execute()){
-            $resultado['mensaje'] = 'Alumno agregado con éxito';
-        } else {
-            $resultado['error'] = true;
-            $resultado['mensaje'] = 'Error al agregar el alumno';
-        }
-        $stmt -> close();
+    // Vinculamos los parámetros
+    $sentencia -> bind_param("sssssii", $dni, $nombre, $apellido1, $apellido2, $email, $telefono, $curso);
+
+    // Ejecutamos la consulta
+    if($sentencia -> execute()){
+
+        // Redirigimos al listado de alumnos
+        header("Location: ../vista/listar_alumno.php");
+        exit;
+
     } else {
-        $resultado['error'] = true;
-        $resultado['mensaje'] = 'Error en la consulta SQL';
-    }
-        } else {
-            $resultado['error'] = true;
-            $resultado['mensaje'] = 'Faltan datos en el formulario';
-        }
+
+        // Mostramos un mensaje de error si no se pudo insertar el registro
+        echo "Error al insertar el registro " . $mysqli_conexion -> error;
     }
 
-    // Mostramos el mensaje de resultado
-    if($resultado['error']){
-        echo '<p>Error: ' . $resultado['mensaje'] . '</p>';
-    } else {
-        echo '<p>' . $resultado['mensaje'] . '</p>';
-    }
+    // Cerramos la sentencia y desconectamos
+    $sentencia -> close();
+    $mysqli_conexion -> close();
 
 ?>

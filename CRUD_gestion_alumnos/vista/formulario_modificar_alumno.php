@@ -30,6 +30,9 @@
     // Almacenamos el registro como un array asociativo
     $registro = $resultado -> fetch_assoc();
 
+    // Cerramos la consulta
+    $sentencia -> close();
+
 ?>
 
 <!DOCTYPE html>
@@ -45,6 +48,12 @@
 
     <!-- Campo oculto para enviar el ID del registro -->
      <input type="hidden" name="id_alumno" value="<?php echo($registro['id_alumno'])?>">
+
+        <!-- Campo para modificar el DNI -->
+        <div>
+            <label for="dni">DNI:</label>
+            <input type="text" id="dni" name="dni" value="<?php echo ($registro['dni']); ?>" required>
+        </div>
 
         <!-- Campo para modificar el nombre -->
         <div>
@@ -81,21 +90,21 @@
             <label for="curso">Curso:</label>
             <input type="number" id="curso" name="curso" value="<?php echo ($registro['curso']); ?>" required>
         </div>
+
+        <!-- Botón para confirmar la modificación -->
+        <input type="submit" value="Modificar">
+
     </form>
 
-<?php
+    <?php
 
-// Incluimos el pie de la página
-include("pie.php");
+    // Incluimos el pie de la página
+    include("pie.php");
 
-?>
+    // Cerramos la conexión
+    $mysqli_conexion -> close();
+
+    ?>
 
 </body>
 </html>
-
-<?php
-
-// Cerramos la conexión
-$mysqli_conexion -> close();
-
-?>

@@ -3,7 +3,7 @@
 
     <!-- Formulario que permite agregar un nuevo registro a nuestra tabla, que llamara a agregar_alumno -->
 
-    <h3>Formulario</h3>
+    <h3>Formulario Agregar</h3>
 
     <form action="../controlador/agregar_alumno.php" method="POST">
 

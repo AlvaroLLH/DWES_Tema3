@@ -51,8 +51,10 @@
                     echo "<td>" . ($fila['email']) . "</td>"; // Email
                     echo "<td>" . ($fila['telefono']) . "</td>"; // Teléfono
                     echo "<td>" . ($fila['curso']) . "</td>"; // Curso
-                    echo '<td><input type="submit" value="Modificar"></td>';
-                    echo '<td><input type="submit" value="Eliminar"></td>';
+
+                    // Botón de modificar como enlace
+                    echo "<td><a href='formulario_modificar_alumno.php?id_alumno=" . $fila['id_alumno'] . "' class='btn-modificar'>Modificar</td>";
+                    echo "<td><a href='../controlador/eliminar_alumno.php?id_alumno=" . $fila['id_alumno'] . "' class='btn-eliminar'>Eliminar</td>";
                     echo "</tr>";
                 }
                 
@@ -66,5 +68,8 @@
 
         </tbody>
     </table>
+
+    <!-- Botón de agregar un registro -->
+    <br><a href='formulario_agregar_alumno.php?id_alumno=<?php echo $fila['id_alumno']; ?>' class='btn-agregar'>Agregar</a>
 
     <?php include("pie.php"); ?>
