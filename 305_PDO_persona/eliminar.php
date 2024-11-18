@@ -30,14 +30,24 @@
         // Ejecutamos la consulta
         $resultado = $sentencia -> execute();
 
+        // Verificamos cuántos registros han sido eliminados
+        $registrosBorrados = $sentencia -> rowCount();
+
+        if($registrosBorrados > 0){
+            echo "Datos eliminados correctamente. Registros eliminados: " . $registrosBorrados;
+
+        } else {
+            echo "No se encontraron registros con ese nombre para eliminar";
+        }
+
     // En caso de error, gestionamos la excepción
     } catch (PDOException $e) {
         echo $e -> getMessage();
+
+    } finally {
+
+         // Cerramos la conexión
+        $conexion = null;
     }
-
-    // Cerramos la conexión
-    $conexion -> close();
-
-    echo "Datos eliminados";
 
 ?>
