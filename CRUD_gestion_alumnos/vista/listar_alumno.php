@@ -32,6 +32,8 @@
                 <th>Email</th>
                 <th>Teléfono</th>
                 <th>Curso</th>
+                <th>Modificar</th>
+                <th>Eliminar</th>
             </tr>
         </thead>
         <tbody>
@@ -49,6 +51,8 @@
                     echo "<td>" . ($fila['email']) . "</td>"; // Email
                     echo "<td>" . ($fila['telefono']) . "</td>"; // Teléfono
                     echo "<td>" . ($fila['curso']) . "</td>"; // Curso
+                    echo '<td><input type="submit" value="Modificar"></td>';
+                    echo '<td><input type="submit" value="Eliminar"></td>';
                     echo "</tr>";
                 }
                 
