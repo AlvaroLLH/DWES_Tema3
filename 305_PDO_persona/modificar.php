@@ -26,6 +26,17 @@
         // Ejecutamos la consulta
         $resultado = $sentencia -> execute();
 
+        // Verificamos cuántos registros han sido modificados
+        $registrosModificados = $sentencia -> rowCount();
+
+        if($registrosModificados > 0){
+            echo "Datos modificados correctamente. Registros modificados " . $registrosModificados;
+
+        } else {
+            echo "No se encontraron registros con ese nombre para modificar";
+        }
+
+    // Gestionamos la excepción
     } catch (PDOException $e) {
         echo $e -> getMessage();
 
