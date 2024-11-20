@@ -6,14 +6,8 @@
     // Creamos la conexión
     $conexion = conexion();
 
-    // Recogemos los datos enviados por el formulario
-    $titulo = $_POST['titulo'];
-    $descripcion = $_POST['descripcion'];
-    $periodo = $_POST['periodo'];
-    $curso = $_POST['curso'];
-    $fecha_presentacion = $_POST['fecha_presentacion'];
-    $nota = $_POST['nota'];
-    $logotipo = $_POST['logotipo'];
+    // Try-catch
+    try {
 
     // Verificamos que los datos obligatorios estén presentes
     if(!isset($titulo, $descripcion, $periodo, $curso, $fecha_presentacion, $nota, $logotipo)){
@@ -21,24 +15,20 @@
     }
 
     // Sentencia SQL para la inserción de datos
-    $sql = "INSERT INTO proyecto (titulo, logotipo) values (:titulo, :logotipo)";
+    $sql = "INSERT INTO proyecto (titulo, descripcion, periodo, curso, fecha_presentacion, nota, logotipo)
+    values (:titulo, :descripcion, :periodo, :curso, :fecha_presentacion, :nota, :logotipo)";
 
     // Preparamos la consulta
-    $sentencia = $conexion -> prepare(query: $sql);
-
-    // Verificamos si se preparó correctamente la consulta
-    if(!$sentencia){
-        die("Error al preparar la consulta. " . $mysqli_conexion -> error);
-    }
+    $sentencia = $conexion -> prepare($sql);
 
     // Vinculamos parámetros usando bindParam
-    $sentencia -> bindParam(param: ':titulo', var: $titulo, type: PDO::PARAM_STR);
-    $sentencia -> bindParam(param: ':descripcion', var: $descripcion, type: PDO::PARAM_STR);
-    $sentencia -> bindParam(param: ':periodo', var: $periodo, type: PDO::PARAM_INT);
-    $sentencia -> bindParam(param: ':curso', var: $curso, type: PDO::PARAM_INT);
-    $sentencia -> bindParam(param: ':fecha_presentacion', var: $fecha_presentacion, type: PDO::PARAM_STR);
-    $sentencia -> bindParam(param: ':nota', var: $nota, type: PDO::PARAM_INT);
-    $sentencia -> bindParam(param: ':logotipo', var: $logotipo, type: PDO::PARAM_LOB);
+    $sentencia -> bindParam(":titulo", $titulo, PDO::PARAM_STR);
+    $sentencia -> bindParam(":descripcion", $descripcion, PDO::PARAM_STR);
+    $sentencia -> bindParam(":periodo", $periodo, PDO::PARAM_INT);
+    $sentencia -> bindParam(":curso", $curso, PDO::PARAM_INT);
+    $sentencia -> bindParam(":fecha_presentacion", $fecha_presentacion, PDO::PARAM_STR);
+    $sentencia -> bindParam(":nota", $nota, PDO::PARAM_INT);
+    $sentencia -> bindParam(":logotipo", $logotipo, PDO::PARAM_LOB);
 
     // Ejecutamos la consulta
     if($sentencia -> execute()){
@@ -47,12 +37,17 @@
         header("Location: ../vista/listar_proyecto.php");
         exit;
 
+    // Si no hay datos, mostramos un error
     } else {
-        echo "Error al insertar el registro " . $mysqli_conexion -> error;
+        echo "Error, no hay datos que mostrar";
     }
 
-    // Cerramos la sentencia y desconectamos
-    $sentencia -> close();
-    $mysqli_conexion -> close();
+    // Gestionamos la excepción
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+
+    // Desconectamos
+    $conexion = null;
 
 ?>
