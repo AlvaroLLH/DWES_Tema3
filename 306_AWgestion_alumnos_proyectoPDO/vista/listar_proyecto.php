@@ -98,6 +98,7 @@
 
     <?php
 
+    // Gestionamos la excepción
     } catch (PDOException $e) {
         echo $e -> getMessage();
     }
