@@ -57,18 +57,52 @@
             </tr>
         </thead>
         <tbody>
+
             <?php
 
+            // Si hay datos en el array asociativo, los mostramos
             if($numFilas > 0){
+                while($fila = $sentencia -> fetch()) {
+                    echo "<tr>";
+                    echo "<td>" . ($proyecto['id_proyecto']) . "</td>";
+                    echo "<td>" . ($proyecto['titulo']) . "</td>";
+                    echo "<td>" . ($proyecto['descripcion']) . "</td>";
+                    echo "<td>" . ($proyecto['periodo']) . "</td>";
+                    echo "<td>" . ($proyecto['curso']) . "</td>";
+                    echo "<td>" . ($proyecto['fecha_presentacion']) . "</td>";
+                    echo "<td>" . ($proyecto['nota']) . "</td>";
+                    echo "<td>" . ($proyecto['logotipo']) . "</td>";
+                    echo "<td>" . ($proyecto['pdf']) . "</td>";
 
+                    // Botón de modificar
+                    echo "<td><a href='formulario_modificar_proyecto.php?id_proyecto=" . $fila['id_proyecto'] . "' class='btn-modificar'>Modificar</td>";
+
+                    // Botón de eliminar
+                    echo "<td><a href='../controlador/eliminar_alumno.php?id_proyecto=" . $fila['id_proyecto'] . "' class='btn-eliminar'>Eliminar</td>";
+                    echo "</tr>";
+                }
+                
+            } else {
+
+                // Si no hay registros, mostramos un mensaje
+                echo "<tr><td colspan='4'>No hay registros disponibles.</td></tr>";
             }
-            
+
             ?>
+
         </tbody>
     </table>
 
+    <!-- Botón para agregar un registro -->
+    <br><a href='formulario_agregar_proyecto.php?id_proyecto=<?php echo $fila['id_proyecto']; ?>' class="btn-agregar">Agregar</a>
+
     <?php
+
     } catch (PDOException $e) {
         echo $e -> getMessage();
     }
+
+    // Incluimos el pie de página
+    include("pie.php");
+
     ?>
