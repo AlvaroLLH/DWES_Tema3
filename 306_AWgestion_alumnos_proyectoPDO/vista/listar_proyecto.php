@@ -8,12 +8,15 @@
     include("encabezado.php");
     include("../config/conexion.php");
 
+    // Creamos la conexión
+    $conexion = conexion();
+
 ?>
 
 <!-- Creamos la conexion y llamamos a su función -->
-<h1><?php $conexion = conexion();?></h1>
+<h1>Listado de Proyectos</h1>
 
-    <!-- Try - catch -->
+    <!-- Try-catch -->
     <?php
     try {
         
@@ -33,11 +36,7 @@
     ?>
 
     <!-- Mostramos el número de registros de la tabla -->
-    <h2>El número de registros de esta tabla es: <?=$numFilas?></h2>
-
-    <a href="formulario_agregar_proyecto.php">
-    <button id="insertar">Insertar</button>
-    </a>
+    <h2>El número de registros de esta tabla es: <?= $numFilas ?></h2>
 
     <!-- Creamos la tabla -->
     <table>
@@ -53,7 +52,7 @@
                 <th>Logotipo</th> <!-- Mostramos el logotipo -->
                 <th>PDF</th> <!-- Mostramos el PDF -->
                 <th>Modificar</th> <!-- Mostramos el botón de modificar -->
-                <th>Borrar</th> <!-- Mostramos el botón de borrar -->
+                <th>Eliminar</th> <!-- Mostramos el botón de borrar -->
             </tr>
         </thead>
         <tbody>
@@ -62,23 +61,47 @@
 
             // Si hay datos en el array asociativo, los mostramos
             if($numFilas > 0){
-                while($fila = $sentencia -> fetch()) {
+                while($proyecto = $sentencia -> fetch()) {
                     echo "<tr>";
-                    echo "<td>" . ($proyecto['id_proyecto']) . "</td>";
-                    echo "<td>" . ($proyecto['titulo']) . "</td>";
-                    echo "<td>" . ($proyecto['descripcion']) . "</td>";
-                    echo "<td>" . ($proyecto['periodo']) . "</td>";
-                    echo "<td>" . ($proyecto['curso']) . "</td>";
-                    echo "<td>" . ($proyecto['fecha_presentacion']) . "</td>";
-                    echo "<td>" . ($proyecto['nota']) . "</td>";
-                    echo "<td>" . ($proyecto['logotipo']) . "</td>";
-                    echo "<td>" . ($proyecto['pdf']) . "</td>";
+                    echo "<td>" . $proyecto -> id_proyecto . "</td>";
+                    echo "<td>" . $proyecto -> titulo . "</td>";
+                    echo "<td>" . $proyecto -> descripcion . "</td>";
+                    echo "<td>" . $proyecto -> periodo . "</td>";
+                    echo "<td>" . $proyecto -> curso . "</td>";
+                    echo "<td>" . $proyecto -> fecha_presentacion . "</td>";
+                    echo "<td>" . $proyecto -> nota . "</td>";
+
+                    // Mostramos el logotipo como una imagen
+                    if(!empty($proyecto -> logotipo)){
+
+                        // Pasamos a base64
+                        $imagenBase64 = base64_encode($proyecto -> logotipo);
+
+                        // Mostramos el logotipo
+                        echo "<td><img src='data:image/jpeg;base64,$imagenBase64' alt='Logotipo' width='100'></td>";
+
+                    } else {
+                        echo "<td>Sin logotipo</td>";
+                    }
+
+                    // Mostramos el PDF (si existe)
+                    if(!empty($proyecto -> pdf_proyecto)) {
+                        
+                        // Pasamos el PDF a base64
+                        $pdfBase64 = base64_encode($proyecto -> pdf_proyecto);
+
+                        // Mostramos un enlace para ver o descargar el PDF
+                        echo "<td><a href='data:application/pdf;base64,$pdfBase64' target='_blank'>Ver PDF</a></td>";
+
+                    } else {
+                        echo "<td>Sin PDF</td>";
+                    }
 
                     // Botón de modificar
-                    echo "<td><a href='formulario_modificar_proyecto.php?id_proyecto=" . $fila['id_proyecto'] . "' class='btn-modificar'>Modificar</td>";
+                    echo "<td><a href='formulario_modificar_proyecto.php?id_proyecto=" . $proyecto -> id_proyecto . "' class='btn-modificar'>Modificar</td>";
 
                     // Botón de eliminar
-                    echo "<td><a href='../controlador/eliminar_alumno.php?id_proyecto=" . $fila['id_proyecto'] . "' class='btn-eliminar'>Eliminar</td>";
+                    echo "<td><a href='../controlador/eliminar_alumno.php?id_proyecto=" . $proyecto -> id_proyecto . "' class='btn-eliminar'>Eliminar</td>";
                     echo "</tr>";
                 }
                 
@@ -94,7 +117,7 @@
     </table>
 
     <!-- Botón para agregar un registro -->
-    <br><a href='formulario_agregar_proyecto.php?id_proyecto=<?php echo $fila['id_proyecto']; ?>' class="btn-agregar">Agregar</a>
+    <br><a href='formulario_agregar_proyecto.php?id_proyecto=<?php echo $proyecto -> id_proyecto; ?>' class="btn-agregar">Agregar</a>
 
     <?php
 

@@ -2,7 +2,7 @@
 
     // Declaramos el título y la hoja de estilos
     $titulo = "Agregar proyecto";
-    $estilo = "css/estiloFormulario,css";
+    $estilo = "css/estiloFormulario.css";
 
     // Incluimos el encabezado
     include("encabezado.php");
@@ -12,8 +12,10 @@
 <!-- Mostramos el título -->
 <h1><?= $titulo ?></h1>
 
+<link rel="stylesheet" href="<?= $estilo ?>">
+
 <!-- Creamos el formulario -->
-<form action="../controlador/agregar_proyecto.php" method="POST">
+<form action="../controlador/agregar_proyecto.php" method="POST" enctype="multipart/form-data">
 
     <!-- Campo para el título -->
     <label for="titulo">
@@ -47,7 +49,12 @@
 
     <!-- Campo para el logotipo -->
     <label for="logotipo">
-        <p>Logotipo:</p><input type="image" name="logotipo" id="logotipo" required>
+        <p>Logotipo:</p><input type="file" name="logotipo" id="logotipo" accept="image/*" required>
+    </label>
+
+    <!-- Campo para el PDF -->
+    <label for="pdf_proyecto">
+        <p>PDF:</p><input type="file" name="pdf_proyecto" id="pdf_proyecto" accept="application/pdf" required>
     </label>
 
     <!-- Botón para enviar -->
