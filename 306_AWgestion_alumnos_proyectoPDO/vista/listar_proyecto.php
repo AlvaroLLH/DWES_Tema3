@@ -13,7 +13,6 @@
 
 ?>
 
-<!-- Creamos la conexion y llamamos a su función -->
 <h1>Listado de Proyectos</h1>
 
     <!-- Try-catch -->
