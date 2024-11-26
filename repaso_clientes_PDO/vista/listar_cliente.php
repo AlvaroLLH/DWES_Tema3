@@ -2,7 +2,7 @@
 
     // Declaramos el título y la hoja de estilos
     $titulo = "Listar Cliente";
-    $estilo = "../vista/css/estiloFormulario.css";
+    $estilo = "../vista/css/estiloListar.css";
 
     // Incluimos el encabezado y la conexión
     include("encabezado.php");
@@ -51,6 +51,8 @@
                 <th>Teléfono</th> <!-- Columna para el teléfono -->
                 <th>Dirección</th> <!-- Columna para el dirección -->
                 <th>Fecha de Registro</th> <!-- Columna para la fecha de registro -->
+                <th>Modificar</th> <!-- Columna para modificar los clientes -->
+                <th>Eliminar</th> <!-- Columna para eliminar los clientes -->
             </tr>
         </thead>
         <tbody>

@@ -15,6 +15,9 @@
             $conexion = new PDO($servidor, $usuario, $pw);
             $conexion -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+            // Devolvemos la conexión
+            return $conexion;
+
             // Gestionamos la excepción
         } catch (PDOException $e) {
             echo $e -> getMessage();

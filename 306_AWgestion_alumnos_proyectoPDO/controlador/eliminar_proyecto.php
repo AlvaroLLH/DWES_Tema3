@@ -6,7 +6,7 @@
     // Creamos la conexión
     $conexion = conexion();
 
-    // Leemos los datos del formulario
+    // Pedimos el ID por URL
     $id_proyecto = $_GET["id_proyecto"];
 
     // Comprobamos que se haya pasado un ID

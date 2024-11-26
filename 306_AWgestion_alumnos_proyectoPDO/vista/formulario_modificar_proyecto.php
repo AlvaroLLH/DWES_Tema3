@@ -24,6 +24,7 @@ $conexion = conexion();
 $id_proyecto = $_GET['id_proyecto'];
 
 try {
+    
     // Creamos la consulta
     $sql = "SELECT * FROM proyecto WHERE id_proyecto = :id_proyecto";
 
