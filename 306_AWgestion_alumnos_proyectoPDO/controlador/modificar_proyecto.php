@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Asignamos valores a los parámetros
         $consultaUpdate->bindParam(":titulo", $titulo, PDO::PARAM_STR);
         $consultaUpdate->bindParam(":descripcion", $descripcion, PDO::PARAM_STR);
-        $consultaUpdate->bindParam(":periodo", $periodo, PDO::PARAM_INT);
+        $consultaUpdate->bindParam(":periodo", $periodo, PDO::PARAM_STR);
         $consultaUpdate->bindParam(":curso", $curso, PDO::PARAM_INT);
         $consultaUpdate->bindParam(":fecha_presentacion", $fecha, PDO::PARAM_STR);
         $consultaUpdate->bindParam(":nota", $nota, PDO::PARAM_INT);

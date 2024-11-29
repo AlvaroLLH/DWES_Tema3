@@ -71,7 +71,7 @@ try {
     <!-- Campo para el período -->
     <label for="periodo">
         <p>Período:</p>
-        <input type="number" name="periodo" value="<?= $proyecto['periodo'] ?>" required>
+        <input type="text" name="periodo" value="<?= $proyecto['periodo'] ?>" required>
     </label>
 
     <!-- Campo para el curso -->

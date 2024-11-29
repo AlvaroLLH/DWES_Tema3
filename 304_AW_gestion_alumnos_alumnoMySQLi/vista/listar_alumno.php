@@ -1,4 +1,4 @@
-    <?php $titulo = "listar_alumno"; 
+    <?php $titulo = "Listar Alumno"; 
     include("encabezado.php");
     
     // Incluimos la conexión a la base de datos

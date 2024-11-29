@@ -57,7 +57,7 @@
     // Vinculamos parámetros usando bindParam
     $sentencia -> bindParam(":titulo", $titulo, PDO::PARAM_STR);
     $sentencia -> bindParam(":descripcion", $descripcion, PDO::PARAM_STR);
-    $sentencia -> bindParam(":periodo", $periodo, PDO::PARAM_INT);
+    $sentencia -> bindParam(":periodo", $periodo, PDO::PARAM_STR);
     $sentencia -> bindParam(":curso", $curso, PDO::PARAM_INT);
     $sentencia -> bindParam(":fecha_presentacion", $fecha_presentacion, PDO::PARAM_STR);
     $sentencia -> bindParam(":nota", $nota, PDO::PARAM_INT);

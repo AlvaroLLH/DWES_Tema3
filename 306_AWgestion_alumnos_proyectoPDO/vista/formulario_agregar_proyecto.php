@@ -1,7 +1,7 @@
 <?php
 
     // Declaramos el título y la hoja de estilos
-    $titulo = "Agregar proyecto";
+    $titulo = "Agregar Proyecto";
     $estilo = "css/estiloFormulario.css";
 
     // Incluimos el encabezado
@@ -29,7 +29,7 @@
 
     <!-- Campo para el período -->
     <label for="periodo">
-        <p>Período:</p><input type="number" name="periodo" id="periodo" min="0" max="99999999" required>
+        <p>Período:</p><input type="text" name="periodo" id="periodo" min="0" max="99999999" required>
     </label>
 
     <!-- Campo para el curso -->

@@ -4,9 +4,10 @@
     $titulo = "Listar Proyecto";
     $estilo = "css/estiloListar.css";
 
-    // Incluimos el encabezado y la conexión
+    // Incluimos el encabezado, la conexión y la biblioteca de FPDF
     include("encabezado.php");
     include("../config/conexion.php");
+    include("C:\Users\alvaro.llahue\Documents\xampp3\htdocs\fpdf\fpdf.php");
 
     // Creamos la conexión
     $conexion = conexion();
@@ -83,18 +84,23 @@
                         echo "<td>Sin logotipo</td>";
                     }
 
-                    // Mostramos el PDF (si existe)
-                    if(!empty($proyecto -> pdf_proyecto)) {
-                        
-                        // Pasamos el PDF a base64
-                        $pdfBase64 = base64_encode($proyecto -> pdf_proyecto);
+                    // Creamos el PDF
+                    $pdf = new FPDF();
 
-                        // Mostramos un enlace para ver o descargar el PDF
-                        echo "<td><a href='data:application/pdf;base64,$pdfBase64' target='_blank'>Ver PDF</a></td>";
+                    // Añadimos una página al PDF
+                    $pdf->AddPage();
 
-                    } else {
-                        echo "<td>Sin PDF</td>";
-                    }
+                    // Establecemos la fuente del PDF
+                    $pdf->SetFont("Arial","B",10);
+
+                    // Escribimos texto en el PDF
+                    $pdf->Cell(0,10,"",0,1,"C");
+
+                    // Damos un nombre al PDF y la opción de poder descargarlo
+                    $pdf->Output("$proyecto->id_proyecto_$proyecto->titulo_$proyecto->nombre_$proyecto->curso_$proyecto->fecha_presentacion","D");
+
+                    // Mostramos el PDF
+                    echo "<td>" . $pdf . "</td>";
 
                     // Botón de modificar
                     echo "<td><a href='formulario_modificar_proyecto.php?id_proyecto=" . $proyecto -> id_proyecto . "' class='btn-modificar'>Modificar</td>";
