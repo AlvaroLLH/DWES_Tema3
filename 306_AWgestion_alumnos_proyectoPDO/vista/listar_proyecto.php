@@ -7,7 +7,7 @@
     // Incluimos el encabezado, la conexión y la biblioteca de FPDF
     include("encabezado.php");
     include("../config/conexion.php");
-    include("C:\Users\alvaro.llahue\Documents\xampp3\htdocs\fpdf\fpdf.php");
+    require("../../../../../fpdf/fpdf.php");
 
     // Creamos la conexión
     $conexion = conexion();
@@ -84,23 +84,35 @@
                         echo "<td>Sin logotipo</td>";
                     }
 
-                    // Creamos el PDF
+                    // Generamos el PDF
                     $pdf = new FPDF();
 
-                    // Añadimos una página al PDF
+                    // Creamos una nueva página
                     $pdf->AddPage();
 
-                    // Establecemos la fuente del PDF
-                    $pdf->SetFont("Arial","B",10);
+                    // Establecemos la fuente
+                    $pdf->SetFont("Arial","B",16);
 
-                    // Escribimos texto en el PDF
-                    $pdf->Cell(0,10,"",0,1,"C");
+                    // Mostramos el título del proyecto
+                    $pdf->Cell(40,10,'Proyecto: ' . $proyecto->titulo);
 
-                    // Damos un nombre al PDF y la opción de poder descargarlo
-                    $pdf->Output("$proyecto->id_proyecto_$proyecto->titulo_$proyecto->nombre_$proyecto->curso_$proyecto->fecha_presentacion","D");
+                    // Salto de línea
+                    $pdf->Ln(10);
 
-                    // Mostramos el PDF
-                    echo "<td>" . $pdf . "</td>";
+                    // Establecemos la fuente
+                    $pdf->SetFont('Arial','',12);
+
+                    // Mostramos los datos del registro
+                    $pdf->MultiCell(0, 10, 'Descripcion: ' . $proyecto->descripcion);
+
+                    // Creamos el titulo del PDF
+                    $pdf->Output('F', "../pdf_proyectos_" . $proyecto->id_proyecto . "_" . $proyecto->titulo . "_AlvaroLlamas_" .
+                    $proyecto->curso . "_" . $proyecto->periodo . "_" . $proyecto->fecha_presentacion . ".pdf");
+
+                    // Generamos el enlace al PDF
+                    $pdfUrl = "../pdf_proyectos_" . $proyecto->id_proyecto . "_" . $proyecto->titulo . "_AlvaroLlamas_" .
+                    $proyecto->curso . "_" . $proyecto->periodo . "_" . $proyecto->fecha_presentacion . ".pdf";
+                    echo "<td><a href='$pdfUrl' target='_blank'>Ver PDF</a></td>";
 
                     // Botón de modificar
                     echo "<td><a href='formulario_modificar_proyecto.php?id_proyecto=" . $proyecto -> id_proyecto . "' class='btn-modificar'>Modificar</td>";
@@ -113,7 +125,7 @@
             } else {
 
                 // Si no hay registros, mostramos un mensaje
-                echo "<tr><td colspan='4'>No hay registros disponibles.</td></tr>";
+                echo "<tr><td colspan='11'>No hay registros disponibles.</td></tr>";
             }
 
             ?>

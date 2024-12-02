@@ -98,11 +98,7 @@ try {
         <input type="file" name="logotipo" id="logotipo" accept="image/*">
     </label>
 
-    <!-- Campo para el PDF -->
-    <label for="pdf_proyecto">
-        <p>PDF:</p>
-        <input type="file" name="pdf_proyecto" id="pdf_proyecto" accept="application/pdf">
-    </label>
+    
 
     <!-- Botón de envío -->
     <label for="enviar">

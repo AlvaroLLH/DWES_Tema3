@@ -52,10 +52,7 @@
         <p>Logotipo:</p><input type="file" name="logotipo" id="logotipo" accept="image/*" required>
     </label>
 
-    <!-- Campo para el PDF -->
-    <label for="pdf_proyecto">
-        <p>PDF:</p><input type="file" name="pdf_proyecto" id="pdf_proyecto" accept="application/pdf" required>
-    </label>
+    
 
     <!-- Botón para enviar -->
     <label for="enviar">
