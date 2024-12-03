@@ -103,7 +103,17 @@
                     $pdf->SetFont('Arial','',12);
 
                     // Mostramos los datos del registro
+                    $pdf -> Image('ficheros/lupa.png', 160, 8, 35, 38, "PNG");
+                    $pdf->Ln(10);
                     $pdf->MultiCell(0, 10, 'Descripcion: ' . $proyecto->descripcion);
+                    $pdf->Ln(10);
+                    $pdf->MultiCell(0, 10, 'Periodo: ' . $proyecto->periodo);
+                    $pdf->Ln(10);
+                    $pdf->MultiCell(0, 10, 'Curso: ' . $proyecto->curso);
+                    $pdf->Ln(10);
+                    $pdf->MultiCell(0, 10, 'Fecha de presentacion: ' . $proyecto->fecha_presentacion);
+                    $pdf->Ln(10);
+                    $pdf->MultiCell(0, 10, 'Nota: ' . $proyecto->nota);
 
                     // Creamos el titulo del PDF
                     $pdf->Output('F', "../pdf_proyectos_" . $proyecto->id_proyecto . "_" . $proyecto->titulo . "_AlvaroLlamas_" .
